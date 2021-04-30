@@ -1,0 +1,97 @@
+<nav class="navbar sticky-top navbar-expand-sm navbar-light">
+  <img id="logo" class="navbar-brand" src="assets/senselive.png" class="img-fluid" alt="">
+  <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+  <label for="openSidebarMenu" class="sidebarIconToggle">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+
+  <div id="sidebarMenu">
+    <div class="card">
+      <img class="rounded-circle mx-auto d-block" src="assets/demo.png" alt="John" width="80px" height="80px"
+        style="margin-top:10px;border:1px solid black">
+      <div class="card-body">
+        <h4 style="text-align: center;">Elkem South Asia</h4>
+        <h5 style="text-align: center;">Pvt. Ltd.</h5>
+        <ul class="sidebarMenuInner">
+          <li class="list-group-item">
+            <h6>Profile</h6>
+          </li>
+          <li class="list-group-item">
+            <h6 data-toggle="modal" data-target="#exampleModal" >Employee Registration</h6>
+          </li>
+          <li class="list-group-item">
+            <h6>Meter Details</h6>
+          </li>
+          <li class="list-group-item">
+            <h6 *ngIf="logoutbtn" (click)="logout()">Logout</h6>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Employee Registration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="close()">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 500px; width:100%;" >
+        <form [formGroup]="EmpregisterForm" (ngSubmit)="onSubmit()" method="post">
+
+          <div  class="form-group">
+            <label for="exampleInputname">Employee Name</label>
+            <input type="text" class="form-control" id="exampleInputname" formControlName="empname" placeholder="Enter your name"
+            autocomplete="off" required>
+            <div class="error" *ngIf="EmpregisterForm.controls['empname'].hasError('required')
+              && EmpregisterForm.controls['empname'].touched" style="color: red;">*required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputemail">Employee Email</label>
+            <input type="email" class="form-control" id="exampleInputemail" formControlName="empemail" placeholder="name@gmail.com"
+            autocomplete="off" required>
+            <div class="error" *ngIf="EmpregisterForm.controls['empemail'].hasError('required')
+              && EmpregisterForm.controls['empemail'].touched" style="color: red;">*required</div>
+          </div>
+
+          <div  class="form-group">
+            <label for="exampleInputdepartment">Department</label>
+            <input type="text" class="form-control" id="exampleInputdepartment" formControlName="empdep" placeholder=""
+            autocomplete="off" required>
+            <div class="error" *ngIf="EmpregisterForm.controls['empdep'].hasError('required')
+              && EmpregisterForm.controls['empdep'].touched" style="color: red;">*required</div>
+          </div>
+
+          <div  class="form-group">
+            <label for="empmeter">Meters Alloted</label>
+            <input type="text" class="form-control" id="exampleInputmeters" formControlName="empmeter" placeholder="select meters"
+            autocomplete="off" required>
+            <!-- <select class="form-control" name="empmeter[]" id="selectoption" multiple="multiple">
+              <option value="meter1">meter1</option>
+              <option value="meter2">meter2</option>
+              <option value="meter3">meter3</option>
+              <option value="meter4">meter4</option>
+            </select> -->
+            <div class="error" *ngIf="EmpregisterForm.controls['empmeter'].hasError('required')
+              && EmpregisterForm.controls['empmeter'].touched" style="color: red;">*required</div>
+          </div>
+
+       
+
+          <button class="btn btn-primary" type="submit" (click)="Empregistration()" [disabled]="EmpregisterForm.invalid">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+

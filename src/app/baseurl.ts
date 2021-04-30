@@ -1,0 +1,1 @@
+export const baseURL:string="http://mayurdafare.ml/APIs";
